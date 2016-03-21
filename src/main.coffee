@@ -1,12 +1,16 @@
-app = require('app')
 # Module to control application life.
-BrowserWindow = require('browser-window')
+app = require('app')
+
 # Module to create native browser window.
+BrowserWindow = require('browser-window')
+
 # Report crashes to our server.
 require('crash-reporter').start()
+
 # Keep a global reference of the window object, if you don't, the window will
 # be closed automatically when the javascript object is GCed.
 mainWindow = null
+
 # Quit when all windows are closed.
 app.on 'window-all-closed', ->
   if process.platform != 'darwin'
@@ -17,8 +21,8 @@ app.on 'window-all-closed', ->
 app.on 'ready', ->
   # Create the browser window.
   mainWindow = new BrowserWindow(
-    width: 800
-    height: 600)
+    width: 1000
+    height: 800)
   # and load the index.html of the app.
   mainWindow.loadUrl 'file://' + __dirname + '/index.html'
   # Emitted when the window is closed.
