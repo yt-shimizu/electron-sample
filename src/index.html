@@ -3,15 +3,17 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Electron Read Us</title>
+  <title>Sample</title>
   <link href="app.css" rel="stylesheet">
 </head>
 
 <body>
-  <div id="timer_text">0.00</div>
-  <div id="start" class="btn active">Start</div>
-  <div id="stop" class="btn">Stop</div>
-  <div id="reset" class="btn active">Reset</div>
+  <div id="stopwatch">
+    <div id="timer_text">{{text}}</div>
+    <div id="start" class="btn" :class="{'active': isStart}" @click="start">Start</div>
+    <div id="stop" class="btn" :class="{'active': isStop}" @click="stop">Stop</div>
+    <div id="reset" class="btn" :class="{'active': isReset}" @click="reset">Reset</div>
+  </div>
 </body>
 <script src="app.js"></script>
 </html>

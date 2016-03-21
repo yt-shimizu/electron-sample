@@ -7,19 +7,23 @@ plumber = require 'gulp-plumber'
 glob = require 'glob'
 source = require 'vinyl-source-stream'
 browserify = require 'browserify'
+notify = require 'gulp-notify'
 
 gulp.task 'html', ->
   gulp.src('./src/*.html')
     .pipe(gulp.dest('./dist'))
 
 gulp.task 'js', ->
-  files = glob.sync('./src/coffee/**/*.coffee')
   browserify
-    entries: files
-    extentions: ['.coffee']
+    entries: ['./src/coffee/index.coffee']
+    extensions: ['.coffee', '.js']
   .bundle()
-  .on 'error', (err) ->
-    console.log err.toString()
+  .on 'error', (error) ->
+    notify.onError({
+      title:   'Compile Error',
+      message: '<%= error.message %>'
+    }).apply(this, arguments);
+    this.emit('end')
   .pipe(source('app.js'))
   .pipe(gulp.dest('./dist'))
 
