@@ -30,10 +30,3 @@ new Vue
         @text = (t/1000).toFixed(2)
         @updateTimeText()
       , 10
-  computed:
-    isStart: ->
-      !@isRunning
-    isStop: ->
-      @isRunning
-    isReset: ->
-      !@isRunning
